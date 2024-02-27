@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/admin.css">
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon/favicon.png" type="image/png">
+
+
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Admin Panel: Use God Mode</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <br>
+        <input type="text" id="useremail" placeholder="useremail" required>
+        <br>
+        <input type="password" id="password" placeholder="Password" required>
+        <br><br>
+        <button type="button" onclick="authenticate()">LET'S GO</button>
+    </form>
+    <h2 id="message">&nbsp;</h2>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

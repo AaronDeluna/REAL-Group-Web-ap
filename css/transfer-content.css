@@ -1,0 +1,66 @@
+.img-foto-content {
+    width: 400px;
+}
+
+.unique-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .unique-image-text-container,
+  .unique-image-text-container-right {
+    overflow: hidden;
+    margin-bottom: 60px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .unique-image-text-container:hover,
+  .unique-image-text-container-right:hover {
+    transform: scale(1.05);
+  }
+
+  .unique-image-text-container img,
+  .unique-image-text-container-right img {
+    margin: 20px; /* Уменьшенные отступы для изображений */
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .unique-image-text-container img:hover,
+  .unique-image-text-container-right img:hover {
+    transform: scale(1.1);
+  }
+
+  .unique-text {
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .unique-text h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .unique-text p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .unique-image-text-container .unique-text {
+    float: right;
+  }
+
+  .unique-image-text-container-right .unique-text {
+    float: left;
+  }
