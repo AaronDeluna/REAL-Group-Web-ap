@@ -35,7 +35,7 @@ emailInput.addEventListener("input", function () {
 });
 
 function sendEmailToBackend(email) {
-    return fetch('http://127.0.0.1:5000/e-mail-api', {
+    return fetch('http://127.0.0.1:5050/api/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
