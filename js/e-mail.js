@@ -1,46 +1,39 @@
-function isValidEmail(email) {
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const emailInput = document.querySelector("#emailInput-contact");
+    const emailButton = document.querySelector("#emailButton-contact");
 
-var addButton = document.getElementById("add-user-email-button");
-var emailInput = document.getElementById("emailInput");
+    if (emailInput && emailButton) {
+        emailButton.addEventListener("click", function (event) {
+            event.preventDefault();
 
-addButton.addEventListener("click", function () {
-    var email = emailInput.value;
+            const email = emailInput.value;
 
-    if (isValidEmail(email) && !addButton.disabled) {
-        addButton.disabled = true;
+            const data = {
+                email: email
+            };
 
-        sendEmailToBackend(email)
+            fetch("http://localhost:5050/api/email/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
             .then(response => {
-                if (response.success) {
-                    alert('Успешно отправлено!');
-                } else {
-                    alert('Ошибка при отправке данных: ' + response.message);
+                if (response.status !== 200) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
                 }
-                addButton.disabled = false;
+                // В этом примере не отправляется JSON в ответе, просто возвращаем текст
+                return response.text(); // Метод для обработки текстового ответа
+            })
+            .then(data => {
+                console.log("Успешно отправлено:", data); // Выводим текстовый ответ
+                alert("Успешно отправлено!");
             })
             .catch(error => {
-                addButton.disabled = false;
+                console.error("Ошибка при отправке данных:", error);
+                alert("Ошибка при отправке данных!");
             });
-        emailInput.classList.remove("invalid-email");
-    } else {
-        emailInput.classList.add("invalid-email");
+        });
     }
-})
-
-emailInput.addEventListener("input", function () {
-    this.classList.remove("invalid-email");
 });
-
-function sendEmailToBackend(email) {
-    return fetch('http://127.0.0.1:5050/api/add', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }),
-    })
-    .then(response => response.json());
-}

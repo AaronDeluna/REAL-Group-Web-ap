@@ -12,34 +12,34 @@ document.addEventListener("DOMContentLoaded", function () {
             const description = document.querySelector("#aboutMessageInput").value;
 
             const data = {
-                id: 20,
                 name: name,
                 email: email,
                 phone: parseInt(phone), // Ensure phone is converted to integer
                 description: description
             };
 
-            fetch("http://localhost:8000/api/add", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Ошибка HTTP: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Успешно отправлено:", data);
-                alert("Успешно отправлено!");
-            })
-            .catch(error => {
-                console.error("Ошибка при отправке данных:", error);
-                alert("Ошибка при отправке данных!");
-            });
+            fetch("http://localhost:5050/api/person/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error(`Ошибка HTTP: ${response.status}`);
+            }
+            // В этом примере не отправляется JSON в ответе, просто возвращаем текст
+            return response.text(); // Метод для обработки текстового ответа
+        })
+        .then(data => {
+            console.log("Успешно отправлено:", data); // Выводим текстовый ответ
+            alert("Успешно отправлено!");
+        })
+        .catch(error => {
+            console.error("Ошибка при отправке данных:", error);
+            alert("Ошибка при отправке данных!");
+        });
         });
     }
 });
